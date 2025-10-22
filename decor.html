@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Calvin’s Home Decor</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg:#f6f2ef;
+      --cream:#fbf8f6;
+      --rich-brown:#2e1f16;
+      --muted-brown:#6b4f3b;
+      --gold:#c99a3f;
+      --card:#fff8f4;
+      --glass: rgba(255,255,255,0.6);
+      --radius:14px;
+      --shadow: 0 10px 30px rgba(22,15,12,0.08);
+      --accent-shadow: 0 6px 18px rgba(201,154,63,0.12);
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;font-family:"Poppins",system-ui,Arial,sans-serif;background:linear-gradient(180deg,var(--bg),#efe9e2);color:var(--rich-brown);-webkit-font-smoothing:antialiased;scroll-behavior:smooth;}
+    a{color:inherit}
+
+    /* NAV */
+    nav{
+      width:100%;
+      background:linear-gradient(90deg, rgba(255,255,255,0.6), rgba(255,255,255,0.45));
+      border-bottom:1px solid rgba(0,0,0,0.04);
+      position:relative;
+      z-index:50;
+      backdrop-filter: blur(4px);
+    }
+    .nav-container{max-width:1200px;margin:0 auto;padding:18px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+    .brand{display:flex;align-items:center;gap:14px}
+    .logo{
+      width:56px;height:56px;border-radius:12px;background:linear-gradient(135deg,var(--gold),#8c6b2a);
+      display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-family:"Playfair Display";font-size:20px;box-shadow:var(--accent-shadow)
+    }
+    .brand-title{font-family:"Playfair Display";font-size:18px;color:var(--rich-brown);font-weight:700}
+    .nav-links{display:flex;gap:20px;align-items:center}
+    .nav-links a{font-weight:600;color:var(--muted-brown);text-decoration:none;padding:8px 10px;border-radius:8px;transition:all .18s}
+    .nav-links a:hover{color:var(--gold);background:rgba(201,154,63,0.06)}
+
+    /* HERO */
+    header.hero{
+      max-width:1200px;margin:28px auto 10px;padding:48px 24px;border-radius:18px;background:
+        linear-gradient(180deg, rgba(46,31,22,0.04), rgba(255,255,255,0.55));
+      display:flex;gap:28px;align-items:center;box-shadow:var(--shadow)
+    }
+    .hero-left{flex:1; padding:10px 6px}
+    .hero-right{flex:1;display:flex;align-items:center;justify-content:center}
+    .hero-title{font-family:"Playfair Display";font-size:38px;color:var(--rich-brown);margin:0 0 10px}
+    .hero-tag{font-size:18px;color:var(--muted-brown);margin:0 0 18px}
+    .hero-cta{display:flex;gap:14px;align-items:center}
+    .btn{background:var(--rich-brown);color:#fff;padding:12px 18px;border-radius:10px;border:none;font-weight:700;cursor:pointer;box-shadow:var(--accent-shadow)}
+    .btn.secondary{background:transparent;color:var(--rich-brown);border:1px solid rgba(46,31,22,0.08)}
+    .hero-img{
+      width:100%;max-width:520px;border-radius:14px;overflow:hidden;box-shadow:0 18px 40px rgba(30,20,15,0.12)
+    }
+    .hero-img img{display:block;width:100%;height:100%;object-fit:cover}
+
+    /* SERVICES */
+    .section-title{font-family:"Playfair Display";color:var(--rich-brown);font-size:24px;margin:8px 0 18px}
+    .services{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px;margin:20px 0 36px}
+    .service-card{background:var(--card);padding:18px;border-radius:12px;box-shadow:var(--shadow);min-height:140px;display:flex;flex-direction:column;gap:10px;justify-content:flex-start}
+    .service-card h3{margin:0;font-family:"Playfair Display";color:var(--muted-brown);font-size:18px}
+    .service-card p{margin:0;color:var(--muted-brown);font-size:14px;line-height:1.5}
+
+    /* GALLERY */
+    .gallery-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin:16px 0 36px}
+    .card{background:var(--card);border-radius:12px;overflow:hidden;box-shadow:var(--shadow);cursor:pointer;transition:transform .25s ease,box-shadow .25s ease}
+    .card:hover{transform:translateY(-6px);box-shadow:0 20px 50px rgba(20,12,8,0.12)}
+    img.decor-img{width:100%;height:220px;object-fit:cover;display:block}
+    .caption{padding:12px 14px}
+    .caption h4{margin:0;font-family:"Playfair Display";font-size:16px;color:var(--rich-brown)}
+    .caption p{margin:6px 0 0;color:var(--muted-brown);font-size:13px}
+
+    /* TESTIMONIALS */
+    .testimonials{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px;margin:20px 0 36px}
+    .testimonial{background:linear-gradient(180deg,#fff,#fbf9f7);padding:18px;border-radius:12px;box-shadow:var(--shadow)}
+    .testimonial p{margin:0;font-style:italic;color:var(--muted-brown)}
+    .testimonial cite{display:block;margin-top:10px;font-weight:700;color:var(--rich-brown)}
+
+    /* ABOUT */
+    #about{background:var(--cream);padding:42px 24px;border-radius:12px;margin:28px auto;max-width:1100px;box-shadow:var(--shadow);text-align:center}
+    #about p{max-width:900px;margin:0 auto;color:var(--muted-brown);line-height:1.7;font-size:15px}
+
+    /* CONTACT */
+    #contact{padding:36px 24px 70px;max-width:900px;margin:0 auto}
+    .contact-wrap{display:grid;grid-template-columns:1fr 360px;gap:20px}
+    .contact-card{background:var(--card);padding:18px;border-radius:12px;box-shadow:var(--shadow)}
+    .contact-info{color:var(--muted-brown);font-size:15px;margin-bottom:12px}
+    .contact-info a{color:var(--rich-brown);text-decoration:none;font-weight:600}
+    form{display:flex;flex-direction:column;gap:10px}
+    input,textarea{padding:12px;border-radius:8px;border:1px solid rgba(10,10,10,0.06);font-size:14px}
+    textarea{min-height:140px;resize:vertical}
+    .form-note{font-size:13px;color:var(--muted-brown)}
+
+    /* LIGHTBOX */
+    .lightbox{position:fixed;inset:0;background:rgba(8,6,5,0.78);display:none;align-items:center;justify-content:center;z-index:1200}
+    .lightbox.active{display:flex}
+    .lightbox-frame{background:#fff;padding:18px;border-radius:12px;max-width:90%;max-height:90%;box-shadow:0 20px 60px rgba(0,0,0,0.45);text-align:center}
+    .lightbox-frame img{max-width:100%;max-height:70vh;border-radius:8px}
+    .lightbox-caption{margin-top:12px;color:var(--muted-brown)}
+    .lb-close{position:absolute;right:24px;top:24px;background:var(--gold);border:none;color:#fff;border-radius:20px;padding:8px 12px;font-weight:700;cursor:pointer}
+
+    /* WHATSAPP FLOAT */
+    .whatsapp{
+      position:fixed;right:18px;bottom:18px;background:linear-gradient(180deg,var(--gold),#a3772e);color:#fff;border-radius:50%;width:56px;height:56px;display:flex;align-items:center;justify-content:center;z-index:1400;box-shadow:0 14px 30px rgba(163,119,46,0.18);text-decoration:none
+    }
+    .whatsapp svg{width:24px;height:24px}
+
+    footer{padding:20px 10px;text-align:center;color:var(--muted-brown);border-top:1px solid rgba(0,0,0,0.03);margin-top:40px}
+
+    /* Animations & reveals */
+    .reveal{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease}
+    .reveal.revealed{opacity:1;transform:none}
+
+    /* Responsive */
+    @media (max-width:900px){
+      header.hero{flex-direction:column;padding:28px}
+      .contact-wrap{grid-template-columns:1fr}
+      .hero-title{font-size:28px}
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-container">
+      <div class="brand">
+        <div class="logo">CHD</div>
+        <div>
+          <div class="brand-title">Calvin’s Home Decor</div>
+          <div style="font-size:12px;color:var(--muted-brown)">Luxury Interiors • Ashaiman</div>
+        </div>
+      </div>
+
+      <div class="nav-links">
+        <a href="#home">Home</a>
+        <a href="#services">Services</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <header id="home" class="hero">
+    <div class="hero-left reveal">
+      <h1 class="hero-title">Calvin’s Home Decor</h1>
+      <p class="hero-tag">Transforming ordinary spaces into timeless masterpieces.</p>
+      <div class="hero-cta">
+        <button class="btn" onclick="document.querySelector('#contact').scrollIntoView({behavior:'smooth'})">Book Consultation</button>
+        <a class="btn secondary" href="#gallery">View Gallery</a>
+      </div>
+    </div>
+
+    <div class="hero-right reveal">
+      <div class="hero-img">
+        <!-- Replace src with your hero photo -->
+        <img src="mainlivinroom.jpg" alt="Hero">
+      </div>
+    </div>
+  </header>
+
+  <!-- SERVICES -->
+  <section id="services" style="max-width:1200px;margin:18px auto;padding:0 20px">
+    <div class="section-title reveal">Our Services</div>
+    <div class="services reveal">
+      <div class="service-card">
+        <h3>Interior Styling</h3>
+        <p>Curated layouts, premium textiles, and layered lighting to create inviting, luxurious interiors tailored to you.</p>
+      </div>
+      <div class="service-card">
+        <h3>Wall Design & Art</h3>
+        <p>Signature wall treatments and art placements that transform focal points into striking expressions of taste.</p>
+      </div>
+      <div class="service-card">
+        <h3>Custom Furniture</h3>
+        <p>Bespoke furniture pieces designed and crafted to complete your space with function and sophistication.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALLERY -->
+  <section id="gallery" style="max-width:1200px;margin:24px auto;padding:0 20px">
+    <div class="section-title reveal">Gallery</div>
+
+    <!-- Filters -->
+    <div class="filters reveal" style="display:flex;justify-content:center;gap:10px;margin-bottom:18px">
+      <button class="filter-btn active" data-filter="all">All</button>
+      <button class="filter-btn" data-filter="living">Living Room</button>
+      <button class="filter-btn" data-filter="bedroom">Bedroom</button>
+      <button class="filter-btn" data-filter="kitchen">Kitchen</button>
+      <button class="filter-btn" data-filter="office">Office</button>
+      <button class="filter-btn" data-filter="dining">Dining</button>
+    </div>
+
+    <div class="gallery-grid reveal" id="galleryGrid">
+      <!-- Keep these <img> tags — replace src values with your images -->
+      <div class="card" data-category="living">
+        <img class="decor-img" src="male-laid-couch-playing-games.jpg" alt="Cozy living room">
+        <div class="caption"><h4>Cozy Living Room</h4><p>Comfort meets refinement.</p></div>
+      </div>
+
+      <div class="card" data-category="bedroom">
+        <img class="decor-img" src="bedroom.jpg" alt="Serene bedroom">
+        <div class="caption"><h4>Serene Bedroom</h4><p>Soft textures for peaceful sleep.</p></div>
+      </div>
+
+      <div class="card" data-category="kitchen">
+        <img class="decor-img" src="kitchen.jpg" alt="Bright kitchen">
+        <div class="caption"><h4>Bright Kitchen</h4><p>Thoughtful layout, timeless finishes.</p></div>
+      </div>
+
+      <div class="card" data-category="office">
+        <img class="decor-img" src="office.jpg" alt="Home office">
+        <div class="caption"><h4>Home Office</h4><p>Productive, stylish workspaces.</p></div>
+      </div>
+
+      <div class="card" data-category="dining">
+        <img class="decor-img" src="dining.jpg" alt="Dining area">
+        <div class="caption"><h4>Dining Area</h4><p>Gather in comfort and elegance.</p></div>
+      </div>
+
+      <div class="card" data-category="living">
+        <img class="decor-img" src="lounge.jpg" alt="Living lounge">
+        <div class="caption"><h4>Modern Lounge</h4><p>Urban luxury with warm tones.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section style="max-width:1200px;margin:0 auto;padding:0 20px">
+    <div class="section-title reveal">Client Testimonials</div>
+    <div class="testimonials reveal">
+      <div class="testimonial">
+        <p>“Calvin’s designs brought warmth and class to my living room — absolutely stunning!”</p>
+        <cite>— Ama G.</cite>
+      </div>
+      <div class="testimonial">
+        <p>“Every detail felt personal and sophisticated. Highly recommended!”</p>
+        <cite>— Kwame N.</cite>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about" class="reveal">
+    <h2>About Calvin’s Home Decor</h2>
+    <p>
+      At <strong>Calvin’s Home Decor</strong>, we believe interiors should be both beautiful and lived-in.
+      Based in <strong>Ashaiman, Kpone Katamanso</strong>, our work combines timeless materials,
+      expert craftsmanship, and refined aesthetics to create luxurious spaces that feel like home.
+      We focus on detail, proportion, and texture — transforming ordinary rooms into elegant, functional sanctuaries.
+    </p>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="reveal">
+    <h2 style="text-align:center;font-family:'Playfair Display';color:var(--rich-brown);margin-top:20px">Contact</h2>
+    <div class="contact-wrap" style="max-width:1100px;margin:18px auto;padding:0 20px">
+      <!-- FORM -->
+      <div class="contact-card contact-card--form contact-card" style="grid-column:1 / span 1">
+        <form id="contactForm">
+          <input type="text" name="name" id="name" placeholder="Your name" required>
+          <input type="email" name="email" id="email" placeholder="Your email" required>
+          <input type="text" name="phone" id="phone" placeholder="Phone (optional)">
+          <textarea name="message" id="message" placeholder="How can we help?" required></textarea>
+          <div style="display:flex;gap:10px;align-items:center;justify-content:space-between">
+            <div class="form-note">We reply within 24 hours.</div>
+            <button type="submit" class="btn">Send Message</button>
+          </div>
+          <div id="formStatus" style="margin-top:10px;font-size:14px;color:var(--muted-brown)"></div>
+        </form>
+      </div>
+
+      <!-- CONTACT INFO -->
+      <aside class="contact-card" style="min-width:240px">
+        <div class="contact-info">
+          <strong>Call / WhatsApp</strong><br>
+          <a href="tel:+233598444229">+233 598 444 229</a><br>
+          <a href="tel:+233549920955">+233 549 920 955</a>
+        </div>
+        <div class="contact-info">
+          <strong>Email</strong><br>
+          <a href="mailto:klvnkave@gmail.com">klvnkave@gmail.com</a>
+        </div>
+        <div style="margin-top:12px;color:var(--muted-brown);font-size:14px">
+          Located in <strong>Ashaiman, Kpone Katamanso</strong><br>
+          Available for consultations and installations.
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <footer>
+    © 2025 Calvin’s Home Decor — Designed with passion & precision.
+  </footer>
+
+  <!-- LIGHTBOX MARKUP -->
+  <div class="lightbox" id="lightbox">
+    <div class="lightbox-frame" role="dialog" aria-modal="true">
+      <button class="lb-close" id="lbClose">Close</button>
+      <img id="lbImg" src="" alt="">
+      <div class="lightbox-caption" id="lbCaption"></div>
+      <div style="margin-top:12px;display:flex;gap:10px;justify-content:center">
+        <button id="lbPrev" class="btn secondary">Prev</button>
+        <button id="lbNext" class="btn">Next</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- WHATSAPP FLOAT -->
+  <a class="whatsapp" href="https://wa.me/233598444229" target="_blank" rel="noopener" title="Message on WhatsApp">
+    <!-- WhatsApp SVG icon -->
+    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M20.5 3.5H3.5C2.67 3.5 2 4.17 2 5v13c0 .83.67 1.5 1.5 1.5h3v3l4.2-3h9.8c.83 0 1.5-.67 1.5-1.5V5c0-.83-.67-1.5-1.5-1.5z" fill="#fff"/>
+    </svg>
+  </a>
+
+  <script>
+    
+    
+    const FORM_ENDPOINT = 'https://formspree.io/f/mwprlarj'; 
+
+    // Simple utility to reveal elements on scroll
+    const revealEls = document.querySelectorAll('.reveal');
+    const revealOnScroll = () => {
+      const viewportH = window.innerHeight;
+      revealEls.forEach(el => {
+        const r = el.getBoundingClientRect();
+        if (r.top < viewportH - 80) el.classList.add('revealed');
+      });
+    };
+    window.addEventListener('scroll', revealOnScroll);
+    window.addEventListener('load', () => {
+      revealOnScroll();
+      // small initial animate for hero parts
+      document.querySelectorAll('.hero .reveal').forEach((el,i)=>setTimeout(()=>el.classList.add('revealed'), 120*i));
+    });
+
+    // Smooth nav link scrolling (adds an offset so section headers appear nicely)
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click', (e)=>{
+        const target = a.getAttribute('href');
+        if(target === '#' || target === '') return;
+        const el = document.querySelector(target);
+        if(!el) return;
+        e.preventDefault();
+        const y = el.getBoundingClientRect().top + window.scrollY - 18;
+        window.scrollTo({top:y,behavior:'smooth'});
+      });
+    });
+
+    /*********** Gallery filters ***********/
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const cards = Array.from(document.querySelectorAll('.gallery-grid .card'));
+    let visibleCards = cards.slice();
+
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterBtns.forEach(b=>b.classList.remove('active'));
+        btn.classList.add('active');
+        const filter = btn.dataset.filter;
+        visibleCards = [];
+        cards.forEach(card => {
+          if (filter === 'all' || card.dataset.category === filter) {
+            card.style.display = 'block';
+            visibleCards.push(card);
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      });
+    });
+
+    /*********** Lightbox behavior ***********/
+    const lb = document.getElementById('lightbox');
+    const lbImg = document.getElementById('lbImg');
+    const lbCaption = document.getElementById('lbCaption');
+    const lbClose = document.getElementById('lbClose');
+    const lbPrev = document.getElementById('lbPrev');
+    const lbNext = document.getElementById('lbNext');
+
+    let lbIndex = 0;
+    function openLightbox(idx){
+      const visible = visibleCards.length ? visibleCards : cards;
+      const card = visible[idx];
+      if(!card) return;
+      const img = card.querySelector('img');
+      lbImg.src = img.src;
+      lbCaption.textContent = card.querySelector('.caption h4').textContent || '';
+      lb.classList.add('active');
+      lbIndex = idx;
+      document.body.style.overflow = 'hidden';
+    }
+    function closeLightbox(){ lb.classList.remove('active'); document.body.style.overflow = ''; }
+    function lbNextFn(){ const visible = visibleCards.length ? visibleCards : cards; lbIndex = (lbIndex + 1) % visible.length; openLightbox(lbIndex); }
+    function lbPrevFn(){ const visible = visibleCards.length ? visibleCards : cards; lbIndex = (lbIndex - 1 + visible.length) % visible.length; openLightbox(lbIndex); }
+
+    // wire gallery open
+    cards.forEach((card,i)=>{
+      card.addEventListener('click', ()=>{
+        // compute the index within visibleCards
+        const visible = visibleCards.length ? visibleCards : cards;
+        const idx = visible.indexOf(card);
+        if (idx >= 0) openLightbox(idx);
+      });
+    });
+
+    lbClose.addEventListener('click', closeLightbox);
+    lbNext.addEventListener('click', (e)=>{ e.stopPropagation(); lbNextFn(); });
+    lbPrev.addEventListener('click', (e)=>{ e.stopPropagation(); lbPrevFn(); });
+    lb.addEventListener('click', (e)=>{ if(e.target === lb) closeLightbox(); });
+    document.addEventListener('keydown', (e)=>{
+      if (!lb.classList.contains('active')) return;
+      if (e.key === 'Escape') closeLightbox();
+      if (e.key === 'ArrowRight') lbNextFn();
+      if (e.key === 'ArrowLeft') lbPrevFn();
+    });
+
+    /*********** Contact form (Formspree) ***********/
+    const contactForm = document.getElementById('contactForm');
+    const statusEl = document.getElementById('formStatus');
+
+    contactForm.addEventListener('submit', async function(e){
+      e.preventDefault();
+      statusEl.style.color = 'var(--muted-brown)';
+      statusEl.textContent = 'Sending message…';
+
+      // Basic validation
+      const data = {
+        name: document.getElementById('name').value.trim(),
+        email: document.getElementById('email').value.trim(),
+        phone: document.getElementById('phone').value.trim(),
+        message: document.getElementById('message').value.trim()
+      };
+      if(!data.name || !data.email || !data.message){
+        statusEl.style.color = '#c0392b';
+        statusEl.textContent = 'Please complete name, email and message.';
+        return;
+      }
+
+      // Check if user replaced the placeholder endpoint
+      if(FORM_ENDPOINT.includes('yourFormID')){
+        statusEl.style.color = '#c67a00';
+        statusEl.innerHTML = 'Formspree endpoint not configured. <br>Follow the instructions in the HTML to set your Formspree form URL.';
+        return;
+      }
+
+      try{
+        // Formspree accepts form-encoded POST
+        const formBody = new URLSearchParams();
+        formBody.append('name', data.name);
+        formBody.append('email', data.email);
+        formBody.append('phone', data.phone);
+        formBody.append('message', data.message);
+        // optional: set _replyto so Formspree can set reply address in notifications
+        formBody.append('_replyto', data.email);
+
+        const res = await fetch(FORM_ENDPOINT, {
+          method: 'POST',
+          headers: { 'Accept': 'application/json', 'Content-Type': 'application/x-www-form-urlencoded' },
+          body: formBody.toString()
+        });
+
+        if(res.ok){
+          statusEl.style.color = 'green';
+          statusEl.textContent = 'Message sent — thank you! We will contact you shortly.';
+          contactForm.reset();
+        } else {
+          const json = await res.json().catch(()=>null);
+          statusEl.style.color = '#c0392b';
+          statusEl.textContent = (json && json.error) ? `Error: ${json.error}` : 'An error occurred sending the message.';
+        }
+      }catch(err){
+        statusEl.style.color = '#c0392b';
+        statusEl.textContent = 'Network error — please try again later.';
+        console.error(err);
+      }
+    });
+
+    /*********** Accessibility / small helpers ***********/
+    // Add subtle focus outlines for keyboard users
+    document.addEventListener('keydown', function(e){
+      if(e.key === 'Tab') document.body.classList.add('show-focus');
+    });
+
+  </script>
+</body>
+</html>
